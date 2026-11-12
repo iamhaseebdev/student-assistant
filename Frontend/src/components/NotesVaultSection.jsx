@@ -89,11 +89,23 @@ const NotesVaultSection = () => {
   };
 
   const handleOpenPDF = (vault) => {
-    if (vault.pdfUrl) {
-      window.open(`http://localhost:3000${vault.pdfUrl}`, '_blank');
-    } else {
+    if (!vault.pdfUrl) {
       setErrorMsg('PDF URL not found in database record.');
+      return;
     }
+
+    // colon gayab ho to wapas lagao (https// -> https://)
+    const fixed = vault.pdfUrl.replace(/^(https?)\/\//i, '$1://');
+
+    // Blob ka poora link ho to seedha kholo
+    if (/^https?:\/\//i.test(fixed)) {
+      window.open(fixed, '_blank');
+      return;
+    }
+
+    // purana local path: backend ka address lagao
+    const base = (import.meta.env.VITE_API_URL || 'http://localhost:3000/api').replace(/\/api\/?$/, '');
+    window.open(`${base}/${fixed.replace(/^\/+/, '')}`, '_blank');
   };
 
   const getExamCooldownStatus = (lastExamTakenAt) => {
