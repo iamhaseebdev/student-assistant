@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import apiClient from '../api/apiClient';
-import AiLoader from './AiLoader';
+import AiLoader from './Ailoader';
 import styles from './SignUpForm.module.css';
 
 const RESEND_SECONDS = 60;
