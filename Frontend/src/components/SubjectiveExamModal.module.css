@@ -1,0 +1,494 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* High Z-Index React Portal Body Overlay */
+.modalOverlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(3, 7, 18, 0.95) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 9999999 !important; /* Overrides any sidebar z-index */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.examCard {
+  background: #090e1a;
+  border: 1px solid rgba(0, 243, 255, 0.35);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 1100px;
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(0, 243, 255, 0.25);
+  color: #f8fafc;
+}
+
+.header {
+  padding: 16px 24px;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.title {
+  color: #00f3ff;
+  font-size: 17px;
+  font-weight: 800;
+  margin: 0 0 4px 0;
+}
+
+.antiCheatBadge {
+  font-size: 11px;
+  color: #ff3377;
+  background: rgba(255, 0, 85, 0.12);
+  border: 1px solid rgba(255, 0, 85, 0.35);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.pdfToggleBtn {
+  background: rgba(255, 0, 85, 0.12);
+  border: 1px solid #ff0055;
+  color: #ff0055;
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.pdfToggleBtn:hover {
+  background: #ff0055;
+  color: #ffffff;
+}
+
+.bodyLayout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  background: #060a14;
+}
+
+.workspace {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.questionBox {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(0, 243, 255, 0.25);
+  padding: 18px;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+.qLabel {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 800;
+  margin: 0 0 6px 0;
+}
+
+.questionBox h4 {
+  color: #00f3ff;
+  font-size: 16px;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.headingBar, .symbolBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  background: rgba(15, 23, 42, 0.9);
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.symTitle {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 700;
+  margin-right: 6px;
+  text-transform: uppercase;
+}
+
+.headingBar button {
+  background: rgba(0, 243, 255, 0.08);
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  color: #00f3ff;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.headingBar button:hover {
+  background: #00f3ff;
+  color: #030712;
+}
+
+.symbolBar button {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #38bdf8;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.symbolBar button:hover {
+  background: #38bdf8;
+  color: #030712;
+}
+
+.answerArea {
+  background: #030712;
+  border: 1.5px solid rgba(0, 243, 255, 0.3);
+  color: #00f3ff;
+  padding: 18px;
+  border-radius: 14px;
+  outline: none;
+  font-size: 14px;
+  font-family: inherit;
+  resize: none;
+  flex: 1;
+  min-height: 220px;
+  line-height: 1.6;
+}
+
+.answerArea:focus {
+  border-color: #00f3ff;
+  box-shadow: 0 0 25px rgba(0, 243, 255, 0.15);
+}
+
+.submitBtn {
+  background: linear-gradient(135deg, rgba(0, 243, 255, 0.25) 0%, rgba(0, 255, 102, 0.25) 100%);
+  border: 1.5px solid #00f3ff;
+  color: #00f3ff;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #00f3ff;
+  color: #030712;
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
+}
+
+.photoUploadBox {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px dashed rgba(0, 243, 255, 0.4);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.fileInput {
+  color: #cbd5e1;
+  font-size: 13px;
+}
+
+.previewContainer {
+  margin-top: 15px;
+  max-height: 250px;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 243, 255, 0.3);
+}
+
+.previewImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.resultBox {
+  padding: 24px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.95);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.passBorder {
+  border: 1.5px solid #00ff66;
+  box-shadow: 0 0 30px rgba(0, 255, 102, 0.15);
+}
+
+.failBorder {
+  border: 1.5px solid #ff0055;
+  box-shadow: 0 0 30px rgba(255, 0, 85, 0.15);
+}
+
+.scoreText {
+  font-size: 20px;
+  color: #00f3ff;
+  margin: 0;
+}
+
+.feedbackText {
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.mistakesBox {
+  background: rgba(255, 0, 85, 0.08);
+  border: 1px solid rgba(255, 0, 85, 0.3);
+  padding: 14px 18px;
+  border-radius: 10px;
+}
+
+.mistakesBox h4 {
+  color: #ff0055;
+  margin: 0 0 8px 0;
+  font-size: 13px;
+}
+
+.mistakesBox ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #f8fafc;
+  font-size: 13px;
+}
+
+.primaryBtn {
+  background: #00f3ff;
+  color: #030712;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+/* ================= WORD-STYLE EDITOR ================= */
+.ribbon {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #0f172a;
+  border: 1px solid rgba(0, 243, 255, 0.25);
+  border-radius: 12px;
+  padding: 10px 14px;
+  flex-shrink: 0;
+}
+
+.ribbonRow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.ribbonBtn {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 9px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e2e8f0;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.ribbonBtn:hover {
+  background: rgba(0, 243, 255, 0.18);
+  border-color: #00f3ff;
+  color: #00f3ff;
+}
+
+.ribbonBtnActive {
+  background: #00f3ff;
+  border-color: #00f3ff;
+  color: #030712;
+}
+
+.ribbonBtnActive:hover {
+  background: #00f3ff;
+  color: #030712;
+}
+
+.ribbonSelect {
+  height: 32px;
+  background: #060b16;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e2e8f0;
+  border-radius: 6px;
+  padding: 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+}
+
+.ribbonSep {
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 4px;
+}
+
+/* gray "desk" with a white sheet of paper on it */
+.paperWrap {
+  background: #1e293b;
+  border-radius: 14px;
+  padding: 24px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 0 0 auto;      /* grow with the page, never squeeze it */
+}
+
+/* nothing inside the scrolling workspace may shrink (this caused the overlap) */
+.workspace > * {
+  flex-shrink: 0;
+}
+
+.paper {
+  background: #ffffff;
+  color: #111827;
+  width: 100%;
+  max-width: 820px;
+  min-height: 480px;
+  padding: 44px 56px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+  outline: none;
+  font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  caret-color: #111827;
+}
+
+.paper:empty::before {
+  content: attr(data-placeholder);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.paper p,
+.paper div {
+  margin: 0 0 6px 0;
+}
+
+.paper h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1e3a8a;
+  margin: 14px 0 6px 0;
+}
+
+.paper h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1d4ed8;
+  margin: 12px 0 4px 0;
+}
+
+.paper ul,
+.paper ol {
+  margin: 4px 0 8px 0;
+  padding-left: 30px;
+}
+
+.paper sub,
+.paper sup {
+  font-size: 0.75em;
+}
+
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.errorBox {
+  background: rgba(255, 0, 85, 0.1);
+  border: 1px solid #ff0055;
+  color: #ff4d85;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .paper { padding: 24px 18px; }
+}
+
+/* ===================== RESPONSIVE (mobile / tablet / laptop / desktop) ===================== */
+.modalOverlay { height: 100dvh !important; box-sizing: border-box !important; }
+.examCard { height: 92dvh; }
+.workspace { min-width: 0; }
+@media (max-width: 1024px) {
+  .modalOverlay { padding: 12px !important; }
+  .bodyLayout { flex-direction: column; overflow-y: auto; }
+  .bodyLayout > * { width: 100% !important; max-width: 100% !important; box-sizing: border-box; }
+  .workspace { flex: 0 0 auto; overflow-y: visible; padding: 16px; }
+  .bodyLayout > :not(.workspace) { flex: 0 0 auto; height: 55dvh; min-height: 280px; }
+}
+@media (max-width: 768px) {
+  .modalOverlay { padding: 0 !important; }
+  .examCard { height: 100dvh; max-width: 100%; border-radius: 0; border-left: none; border-right: none; }
+  .header { padding: 12px 14px; flex-wrap: wrap; gap: 10px; }
+  .title { font-size: 15px; }
+  .pdfToggleBtn { padding: 8px 12px; font-size: 11px; }
+  .workspace { padding: 12px; gap: 12px; }
+  .questionBox { padding: 14px; }
+  .questionBox h4 { font-size: 15px; }
+  .ribbon { position: static; padding: 8px 10px; }
+  .ribbonBtn { min-width: 36px; height: 36px; }
+  .ribbonSelect { height: 36px; font-size: 14px; }
+  .headingBar, .symbolBar { padding: 8px 10px; }
+  .symbolBar { max-height: 120px; overflow-y: auto; }
+  .paperWrap { padding: 10px 6px; }
+  .paper { min-height: 320px; font-size: 16px; }
+  .answerArea { min-height: 180px; font-size: 16px; padding: 14px; }
+  .resultBox { padding: 16px; }
+  .statusBar { font-size: 11px; }
+}

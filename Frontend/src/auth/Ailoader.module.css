@@ -1,0 +1,164 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  background: rgba(3, 7, 18, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace, sans-serif;
+  animation: overlayIn 0.25s ease both;
+}
+
+.orb {
+  position: relative;
+  width: 148px;
+  height: 148px;
+}
+
+/* Glowing AI core */
+.core {
+  position: absolute;
+  inset: 52px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #eafffb 0%, #00f3ff 38%, #00ff66 100%);
+  box-shadow: 0 0 28px rgba(0, 243, 255, 0.8), 0 0 70px rgba(0, 255, 102, 0.35);
+  animation: breathe 1.8s ease-in-out infinite;
+}
+
+/* Rotating scan arc */
+.scan {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0deg, transparent 260deg, rgba(0, 243, 255, 0.7) 360deg);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+  animation: spin 1.6s linear infinite;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.ringOuter {
+  inset: 10px;
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  animation: spin 4s linear infinite;
+}
+
+.ringInner {
+  inset: 28px;
+  border: 1px dashed rgba(0, 255, 102, 0.35);
+  animation: spin 6s linear infinite reverse;
+}
+
+/* Neural nodes sitting on the rings */
+.nodeWrap {
+  position: absolute;
+  inset: 0;
+  transform: rotate(var(--angle));
+}
+
+.node {
+  position: absolute;
+  top: -4px;
+  left: calc(50% - 4px);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00f3ff;
+  box-shadow: 0 0 10px #00f3ff;
+  animation: nodePulse 1.4s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+.nodeGreen {
+  background: #00ff66;
+  box-shadow: 0 0 10px #00ff66;
+}
+
+/* Status text */
+.label {
+  margin: 0;
+  color: #00f3ff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+  animation: labelIn 0.4s ease both;
+}
+
+.dots {
+  display: inline-flex;
+  gap: 3px;
+  margin-left: 4px;
+}
+
+.dots i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #00ff66;
+  animation: dotBlink 1.2s infinite ease-in-out;
+}
+
+.dots i:nth-child(2) { animation-delay: 0.2s; }
+.dots i:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(0.88); opacity: 0.85; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+@keyframes nodePulse {
+  0%, 100% { transform: scale(0.7); opacity: 0.6; }
+  50% { transform: scale(1.35); opacity: 1; }
+}
+
+@keyframes dotBlink {
+  0%, 80%, 100% { opacity: 0.2; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-3px); }
+}
+
+@keyframes labelIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scan,
+  .ringOuter,
+  .ringInner,
+  .node,
+  .dots i {
+    animation: none;
+  }
+  .core {
+    animation-duration: 3.6s;
+  }
+}
+
+/* ===================== RESPONSIVE (mobile / tablet / laptop / desktop) ===================== */
+.overlay { padding: 20px; box-sizing: border-box; height: 100dvh; text-align: center; }
+.label { padding: 0 12px; line-height: 1.6; }
+@media (max-width: 480px) {
+  .overlay { gap: 24px; }
+  .orb { width: 118px; height: 118px; }
+  .core { inset: 41px; }
+  .label { font-size: 12px; letter-spacing: 0.5px; }
+}

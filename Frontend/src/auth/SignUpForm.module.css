@@ -1,0 +1,405 @@
+.signupContainer {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #030712;
+  background-image: 
+    radial-gradient(at 20% 20%, rgba(0, 243, 255, 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 80%, rgba(0, 255, 102, 0.12) 0px, transparent 50%),
+    linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
+  font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace, sans-serif;
+  padding: 24px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.signupContainer::before {
+  content: '';
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  background: linear-gradient(135deg, #00f3ff, #00ff66);
+  filter: blur(160px);
+  border-radius: 50%;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.signupCard {
+  position: relative;
+  z-index: 1;
+  background: rgba(8, 12, 22, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  border-radius: 16px;
+  padding: 38px 36px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 0 35px rgba(0, 243, 255, 0.15),
+              0 20px 40px rgba(0, 0, 0, 0.8);
+}
+
+.signupHeader {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.signupHeader h2 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 0 0 8px 0;
+  background: linear-gradient(135deg, #00f3ff 0%, #00ff66 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 12px rgba(0, 243, 255, 0.3);
+  text-transform: uppercase;
+}
+
+.signupHeader p {
+  color: #64748b;
+  font-size: 13px;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.alertBox {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.success {
+  background: rgba(0, 255, 102, 0.1);
+  border: 1px solid rgba(0, 255, 102, 0.4);
+  color: #00ff66;
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+}
+
+.error {
+  background: rgba(255, 0, 85, 0.1);
+  border: 1px solid rgba(255, 0, 85, 0.4);
+  color: #ff0055;
+  box-shadow: 0 0 10px rgba(255, 0, 85, 0.2);
+}
+
+.signupForm {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 14px;
+}
+
+.formGroup label {
+  color: #38bdf8;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.formGroup input {
+  width: 100%;
+  background: rgba(3, 7, 18, 0.9);
+  border: 1px solid rgba(0, 243, 255, 0.25);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #00f3ff;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.formGroup input:focus {
+  border-color: #00f3ff;
+  background: rgba(3, 7, 18, 1);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+}
+
+.formGroup input::placeholder {
+  color: #334155;
+}
+
+.passwordInputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.passwordInputWrapper input {
+  padding-right: 75px;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 10px;
+  background: rgba(0, 243, 255, 0.1);
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  border-radius: 6px;
+  color: #00f3ff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.togglePassword:hover {
+  background: rgba(0, 243, 255, 0.25);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.submitBtn {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #00f3ff 0%, #00ff66 100%);
+  color: #030712;
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 255, 102, 0.6);
+  background: linear-gradient(135deg, #00ff66 0%, #00f3ff 100%);
+}
+
+.submitBtn:active {
+  transform: translateY(0);
+}
+
+.submitBtn:disabled {
+  background: #1e293b;
+  color: #475569;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.footerText {
+  margin-top: 22px;
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.footerText a {
+  color: #00ff66;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 4px;
+  transition: all 0.2s ease;
+}
+
+.footerText a:hover {
+  color: #00f3ff;
+  text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
+}
+/* ================= DASHBOARD BUTTON STYLES ================= */
+
+.cardActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.actionBtn {
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Edit Button - Cyan Glow */
+.editBtn {
+  background: rgba(0, 243, 255, 0.12);
+  border: 1px solid rgba(0, 243, 255, 0.5);
+  color: #00f3ff;
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+.editBtn:hover {
+  background: #00f3ff;
+  color: #030712;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Save Button - Neon Green Glow */
+.saveBtn {
+  background: rgba(0, 255, 102, 0.12);
+  border: 1px solid rgba(0, 255, 102, 0.5);
+  color: #00ff66;
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+}
+
+.saveBtn:hover {
+  background: #00ff66;
+  color: #030712;
+  box-shadow: 0 0 20px rgba(0, 255, 102, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Delete Button - Red Glow */
+.deleteBtn {
+  background: rgba(255, 0, 85, 0.12);
+  border: 1px solid rgba(255, 0, 85, 0.5);
+  color: #ff0055;
+  box-shadow: 0 0 10px rgba(255, 0, 85, 0.2);
+}
+
+.deleteBtn:hover {
+  background: #ff0055;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 0, 85, 0.7);
+  transform: translateY(-2px);
+}
+
+/* Logout Button - Red Border Style */
+.logoutBtn {
+  width: 100%;
+  margin-top: 15px;
+  background: rgba(255, 0, 85, 0.1);
+  border: 1px solid rgba(255, 0, 85, 0.4);
+  color: #ff0055;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.logoutBtn:hover {
+  background: #ff0055;
+  color: #ffffff;
+  box-shadow: 0 0 25px rgba(255, 0, 85, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Disabled Self-Admin Button */
+.disabledBtn {
+  background: rgba(30, 41, 59, 0.5) !important;
+  border: 1px solid rgba(71, 85, 105, 0.4) !important;
+  color: #475569 !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+/* ================= EMAIL VERIFICATION (OTP) ================= */
+
+.formGroup .otpInput {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 14px;
+  padding: 14px 8px 14px 22px;
+}
+
+.formGroup .otpInput::placeholder {
+  letter-spacing: 14px;
+}
+
+.otpActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.linkBtn {
+  background: none;
+  border: none;
+  padding: 4px 0;
+  color: #00ff66;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.linkBtn:hover:not(:disabled) {
+  color: #00f3ff;
+  text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
+}
+
+.linkBtn:disabled {
+  color: #475569;
+  cursor: not-allowed;
+}
+
+/* ===================== RESPONSIVE (mobile / tablet / laptop / desktop) ===================== */
+.signupContainer { min-height: 100dvh; }
+.signupCard { box-sizing: border-box; }
+@media (max-width: 600px) {
+  .signupContainer { padding: 16px 12px; }
+  .signupCard { padding: 26px 18px; border-radius: 14px; }
+  .signupHeader { margin-bottom: 22px; }
+  .signupHeader h2 { font-size: 21px; }
+  .formRow { grid-template-columns: 1fr; gap: 18px; }
+  .formGroup input { font-size: 16px; padding: 12px 14px; }
+  .passwordInputWrapper input { padding-right: 70px; }
+  .cardActions { flex-wrap: wrap; }
+  .formGroup .otpInput { font-size: 22px; letter-spacing: 8px; padding: 12px 6px 12px 14px; }
+  .formGroup .otpInput::placeholder { letter-spacing: 8px; }
+  .otpActions { flex-wrap: wrap; }
+}
+@media (max-width: 360px) {
+  .signupCard { padding: 22px 14px; }
+  .formGroup .otpInput { font-size: 20px; letter-spacing: 5px; }
+  .formGroup .otpInput::placeholder { letter-spacing: 5px; }
+}
+@media (max-height: 520px) and (orientation: landscape) {
+  .signupContainer { padding: 12px; }
+  .signupCard { padding: 20px 24px; }
+  .signupHeader { margin-bottom: 16px; }
+}

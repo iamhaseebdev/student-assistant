@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+/* MAIN CONTAINER */
+.vaultContainer {
+    font-family: 'Inter', sans-serif;
+    background: rgba(8, 12, 22, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 243, 255, 0.25);
+    border-radius: 16px;
+    padding: 24px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+
+.vaultHeader {
+    border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+    padding-bottom: 14px;
+}
+
+.title {
+    color: #00f3ff;
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0 0 6px 0;
+}
+
+.subtitle {
+    color: #64748b;
+    font-size: 12px;
+    margin: 0;
+}
+
+.createBox {
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(0, 243, 255, 0.25);
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.modeTabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.tabBtn {
+    background: transparent;
+    color: #64748b;
+    border: 1px solid #334155;
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.activeTabBtn {
+    background: rgba(0, 243, 255, 0.15);
+    color: #00f3ff;
+    border: 1px solid #00f3ff;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.createForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.formRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.formRowSecondary {
+    display: flex;
+    gap: 14px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.inputGroup label {
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.inputGroup select,
+.inputGroup input {
+    background: #060b16;
+    border: 1.5px solid rgba(0, 243, 255, 0.3);
+    color: #00f3ff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    outline: none;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.generateBtn {
+    background: linear-gradient(135deg, rgba(0, 243, 255, 0.2) 0%, rgba(0, 255, 102, 0.2) 100%);
+    border: 1.5px solid #00f3ff;
+    color: #00f3ff;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.vaultGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+}
+
+.vaultCard {
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.subjectBadge {
+    font-size: 10px;
+    font-weight: 800;
+    color: #00ff66;
+    background: rgba(0, 255, 102, 0.1);
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 102, 0.3);
+}
+
+.classBadge {
+    font-size: 10px;
+    font-weight: 800;
+    color: #00f3ff;
+    background: rgba(0, 243, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 243, 255, 0.3);
+}
+
+.formatBadge {
+    font-size: 10px;
+    font-weight: 800;
+    color: #ffaa00;
+    background: rgba(255, 170, 0, 0.1);
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 170, 0, 0.3);
+}
+
+.pdfTitle {
+    color: #f8fafc;
+    margin: 6px 0 2px 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.btnActionRow {
+    display: flex;
+    gap: 10px;
+}
+
+.readStudyBtn {
+    flex: 1;
+    background: rgba(0, 243, 255, 0.1);
+    border: 1px solid #00f3ff;
+    color: #00f3ff;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.startExamBtn {
+    flex: 1;
+    background: rgba(0, 255, 102, 0.1);
+    border: 1px solid #00ff66;
+    color: #00ff66;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+/* 🚨 FIX: SCREEN SHIFTING MODAL POSITIONING */
+.modalOverlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(3, 7, 18, 0.88) !important;
+    backdrop-filter: blur(14px) !important;
+    z-index: 999999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px !important;
+    margin: 0 !important;
+}
+
+.studyReaderCard {
+    background: #060b16 !important;
+    border: 1.5px solid #00f3ff !important;
+    border-radius: 16px !important;
+    width: 90% !important;
+    max-width: 850px !important;
+    height: 75vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    box-shadow: 0 0 50px rgba(0, 243, 255, 0.3) !important;
+    margin: auto !important;
+}
+
+.readerHeader {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    background: rgba(15, 23, 42, 0.95) !important;
+    border-bottom: 1px solid rgba(0, 243, 255, 0.25) !important;
+    padding: 16px 24px !important;
+}
+
+.readerHeader h3 {
+    color: #00f3ff !important;
+    margin: 0 !important;
+    font-size: 17px !important;
+    font-weight: 800 !important;
+}
+
+.readerHeader button {
+    background: rgba(255, 0, 85, 0.15) !important;
+    border: 1px solid #ff0055 !important;
+    color: #ff0055 !important;
+    padding: 6px 14px !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-weight: 800 !important;
+    font-size: 12px !important;
+}
+
+.readerContent {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    padding: 24px !important;
+    background: #060b16 !important;
+}
+
+.readerContent pre {
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    font-family: 'Inter', sans-serif !important;
+    color: #00f3ff !important;
+    font-size: 14px !important;
+    line-height: 1.8 !important;
+    margin: 0 !important;
+}
+
+/* ===================== RESPONSIVE (mobile / tablet / laptop / desktop) ===================== */
+.vaultContainer { box-sizing: border-box; max-width: 100%; }
+.vaultGrid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.inputGroup { min-width: 0; }
+.inputGroup select, .inputGroup input { width: 100%; box-sizing: border-box; min-width: 0; }
+.modalOverlay { height: 100dvh !important; box-sizing: border-box !important; }
+@media (max-width: 900px) {
+  .formRow { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .vaultContainer { padding: 16px; gap: 16px; }
+  .createBox { padding: 14px; }
+  .modeTabs { flex-wrap: wrap; }
+  .tabBtn, .activeTabBtn { flex: 1 1 auto; text-align: center; }
+  .formRowSecondary { flex-wrap: wrap; }
+  .formRowSecondary > * { flex: 1 1 200px; }
+  .inputGroup select, .inputGroup input { font-size: 16px; }
+  .modalOverlay { padding: 10px !important; }
+  .studyReaderCard { width: 100% !important; max-width: 100% !important; height: 90dvh !important; border-radius: 12px !important; }
+  .readerHeader { padding: 12px 14px !important; gap: 10px !important; }
+  .readerHeader h3 { font-size: 14px !important; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .readerContent { padding: 14px !important; }
+  .readerContent pre { font-size: 13px !important; line-height: 1.7 !important; }
+}
+@media (max-width: 520px) {
+  .formRow { grid-template-columns: 1fr; }
+  .title { font-size: 17px; }
+  .btnActionRow { flex-wrap: wrap; }
+  .btnActionRow > * { flex: 1 1 100%; }
+}

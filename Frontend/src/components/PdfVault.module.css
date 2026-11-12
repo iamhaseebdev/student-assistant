@@ -1,0 +1,759 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+.vaultCard {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: rgba(8, 12, 22, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.vaultHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.iconBadge {
+  font-size: 28px;
+  background: rgba(0, 243, 255, 0.1);
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainTitle {
+  color: #00f3ff;
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.subTitle {
+  color: #64748b;
+  font-size: 12px;
+  margin: 2px 0 0 0;
+}
+
+.readyBadge {
+  background: rgba(0, 255, 102, 0.12);
+  border: 1px solid #00ff66;
+  color: #00ff66;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.cooldownBadge {
+  background: rgba(255, 170, 0, 0.12);
+  border: 1px solid #ffaa00;
+  color: #ffaa00;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.dayDoneBadge {
+  background: rgba(0, 243, 255, 0.15);
+  border: 1px solid #00f3ff;
+  color: #00f3ff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.errorBanner {
+  background: rgba(255, 0, 85, 0.15);
+  border: 1px solid #ff0055;
+  color: #ff4d8d;
+  padding: 10px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.errorBanner button {
+  background: transparent;
+  border: none;
+  color: #ff0055;
+  cursor: pointer;
+}
+
+.examSetupBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  padding: 12px 18px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cyanMixedExamBtn {
+  background: rgba(0, 243, 255, 0.12);
+  border: 1px solid #00f3ff;
+  color: #00f3ff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.cyanMixedExamBtn:hover:not(:disabled) {
+  background: #00f3ff;
+  color: #030712;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+}
+
+.cyanMixedExamBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.uploadForm {
+  background: rgba(3, 7, 18, 0.6);
+  border: 1px dashed rgba(0, 243, 255, 0.3);
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.formRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.titleInput {
+  flex: 1;
+  min-width: 200px;
+  background: #060b16;
+  border: 1px solid rgba(0, 243, 255, 0.25);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #00f3ff;
+  outline: none;
+  font-size: 13px;
+}
+
+.customFileBtn {
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.uploadBtn {
+  background: linear-gradient(135deg, #00f3ff 0%, #00ff66 100%);
+  color: #030712;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.docBox {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.docHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pdfBadge {
+  background: rgba(255, 0, 85, 0.15);
+  border: 1px solid #ff0055;
+  color: #ff0055;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.docMeta h4 {
+  margin: 0 0 2px 0;
+  color: #00ff66;
+  font-size: 14px;
+}
+
+.docMeta p {
+  margin: 0;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.docActionRow {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.readPdfBtn {
+  flex: 1;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid #00f3ff;
+  color: #00f3ff;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.readPdfBtn:hover {
+  background: #00f3ff;
+  color: #030712;
+}
+
+.startExamBtn {
+  flex: 1;
+  background: rgba(0, 255, 102, 0.1);
+  border: 1px solid #00ff66;
+  color: #00ff66;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.startExamBtn:hover:not(:disabled) {
+  background: #00ff66;
+  color: #030712;
+}
+
+.startExamBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* RESULT MODAL STYLES */
+.resultModal {
+  background: #060b16;
+  border: 1.5px solid #00f3ff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 88vh;
+  box-shadow: 0 0 50px rgba(0, 243, 255, 0.35);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.resultBody {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.passBanner {
+  background: rgba(0, 255, 102, 0.12);
+  border: 1.5px solid #00ff66;
+  color: #00ff66;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 900;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.failBanner {
+  background: rgba(255, 0, 85, 0.12);
+  border: 1.5px solid #ff0055;
+  color: #ff0055;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 900;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.statBox {
+  background: #0b1326;
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statLabel {
+  color: #64748b;
+  font-size: 11px;
+}
+
+.statVal {
+  color: #f8fafc;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.breakdownList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.breakdownCard {
+  background: #0b1326;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.correctCard {
+  border: 1px solid rgba(0, 255, 102, 0.3);
+}
+
+.wrongCard {
+  border: 1px solid rgba(255, 0, 85, 0.3);
+}
+
+.qTitleRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.correctTag {
+  color: #00ff66;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.wrongTag {
+  color: #ff0055;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.breakdownQText {
+  color: #f8fafc;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.optionsReviewGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.neutralOpt {
+  background: #060b14;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #64748b;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.correctOpt {
+  background: rgba(0, 255, 102, 0.12);
+  border: 1px solid #00ff66;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #00ff66;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrongOpt {
+  background: rgba(255, 0, 85, 0.12);
+  border: 1px solid #ff0055;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #ff0055;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* PORTAL OVERLAYS & MODALS */
+.portalOverlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(2, 6, 23, 0.94) !important;
+  backdrop-filter: blur(14px) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 9999999 !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+.difficultyModal {
+  background: #060b16;
+  border: 1.5px solid #00f3ff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 0 45px rgba(0, 243, 255, 0.35);
+  overflow: hidden;
+}
+
+.diffModalBody {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.diffDocTitle {
+  color: #00ff66;
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.diffOptionLabel {
+  background: #0b1326;
+  border: 1.5px solid rgba(0, 243, 255, 0.2);
+  padding: 14px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.diffOptionLabel input[type="radio"] {
+  accent-color: #00f3ff;
+  transform: scale(1.2);
+}
+
+.easyText {
+  color: #00ff66;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.normalText {
+  color: #ffaa00;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.hardText {
+  color: #ff0055;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.diffSelectedEasy {
+  border-color: #00ff66 !important;
+  background: rgba(0, 255, 102, 0.12) !important;
+}
+
+.diffSelectedNormal {
+  border-color: #ffaa00 !important;
+  background: rgba(255, 170, 0, 0.12) !important;
+}
+
+.diffSelectedHard {
+  border-color: #ff0055 !important;
+  background: rgba(255, 0, 85, 0.12) !important;
+}
+
+.confirmStartExamBtn {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #00f3ff 0%, #00ff66 100%);
+  color: #030712;
+  border: none;
+  padding: 13px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+}
+
+.pdfReaderModal {
+  background: #060b14;
+  border: 1.5px solid #00f3ff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 900px;
+  height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 50px rgba(0, 243, 255, 0.3);
+}
+
+.readerFrameBody {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.pdfIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0 0 14px 14px;
+}
+
+.portalModalContent {
+  background: #090d16;
+  border: 1.5px solid #00f3ff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 760px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 45px rgba(0, 243, 255, 0.25);
+  overflow: hidden;
+}
+
+.kioskBar {
+  background: rgba(0, 243, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 243, 255, 0.25);
+  color: #00f3ff;
+  padding: 8px 18px;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.portalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background: rgba(0, 243, 255, 0.05);
+  border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+.portalTitleBox {
+  color: #00f3ff;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.timerBadge {
+  background: rgba(0, 243, 255, 0.12);
+  border: 1px solid rgba(0, 243, 255, 0.4);
+  color: #00f3ff;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.portalCloseBtn {
+  background: rgba(255, 51, 102, 0.12);
+  border: 1px solid #ff3366;
+  color: #ff3366;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.portalBody {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.questionText {
+  color: #f8fafc;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.optionLabel {
+  background: #0b1326;
+  border: 1.5px solid rgba(0, 243, 255, 0.2);
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: #cbd5e1;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.optionSelected {
+  background: rgba(0, 243, 255, 0.12) !important;
+  border-color: #00f3ff !important;
+  color: #00f3ff !important;
+}
+
+.examFooterNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 243, 255, 0.15);
+}
+
+.qCounter {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.primaryBtn {
+  background: rgba(0, 243, 255, 0.12);
+  border: 1px solid #00f3ff;
+  color: #00f3ff;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.secondaryBtn {
+  background: transparent;
+  border: 1px solid #334155;
+  color: #94a3b8;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.submitExamBtn {
+  background: #00f3ff;
+  color: #030712;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* ===================== RESPONSIVE (mobile / tablet / laptop / desktop) ===================== */
+.vaultCard { box-sizing: border-box; }
+.gridContainer { grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+.portalOverlay { height: 100dvh !important; }
+.docMeta { min-width: 0; }
+.docMeta h4 { overflow-wrap: anywhere; }
+.titleInput { min-width: 0; }
+@media (max-width: 768px) {
+  .vaultCard { padding: 16px; border-radius: 12px; }
+  .vaultHeader { gap: 12px; margin-bottom: 16px; }
+  .iconBadge { width: 40px; height: 40px; font-size: 22px; }
+  .mainTitle { font-size: 16px; }
+  .examSetupBar { padding: 10px 12px; }
+  .cyanMixedExamBtn { width: 100%; }
+  .uploadForm { padding: 12px; }
+  .formRow > * { flex: 1 1 100%; text-align: center; }
+  .titleInput { font-size: 16px; text-align: left; }
+  .portalOverlay { padding: 10px !important; }
+  .portalModalContent, .resultModal { max-height: 94dvh; border-radius: 12px; }
+  .difficultyModal { max-width: 100%; }
+  .pdfReaderModal { height: 92dvh; border-radius: 12px; }
+  .portalHeader { padding: 12px 14px; flex-wrap: wrap; gap: 8px; }
+  .kioskBar { padding: 8px 12px; flex-wrap: wrap; gap: 4px; }
+  .portalBody, .resultBody { padding: 14px; }
+  .questionText { font-size: 14px; }
+  .optionLabel { padding: 11px 12px; }
+  .examFooterNav { flex-wrap: wrap; gap: 8px; }
+  .statGrid { gap: 8px; }
+  .statVal { font-size: 14px; }
+}
+@media (max-width: 480px) {
+  .examFooterNav button { flex: 1 1 auto; }
+  .qCounter { width: 100%; text-align: center; order: -1; }
+  .diffModalBody { padding: 14px; }
+}

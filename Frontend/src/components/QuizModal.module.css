@@ -1,0 +1,126 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(2, 6, 23, 0.95);
+  backdrop-filter: blur(14px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999 !important; /* OVERRIDES DASHBOARD SIDEBAR */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modalContent {
+  background: #090d16;
+  border: 2px solid #00f3ff;
+  border-radius: 16px;
+  padding: 28px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: 0 0 50px rgba(0, 243, 255, 0.35);
+  margin: auto;
+}
+
+.lockdownHeader {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(255, 0, 85, 0.15);
+  border: 1px solid #ff0055;
+  color: #ff0055;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.modalHeader h3 {
+  margin: 0 0 16px 0;
+  color: #00f3ff;
+  font-size: 18px;
+}
+
+.questionBlock {
+  background: #0f172a;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+.questionTitle {
+  color: #00ff66;
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.optionsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.optionLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 6px;
+  color: #cbd5e1;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.selectedOption {
+  border-color: #00f3ff !important;
+  background: rgba(0, 243, 255, 0.15) !important;
+  color: #00f3ff !important;
+}
+
+.submitQuizBtn {
+  width: 100%;
+  background: linear-gradient(135deg, #00f3ff, #00ff66);
+  color: #000;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.scoreBox {
+  text-align: center;
+}
+
+.scoreBox h2 {
+  color: #00ff66;
+  font-size: 32px;
+  margin: 10px 0;
+}
+
+/* ===================== RESPONSIVE (mobile / tablet / laptop / desktop) ===================== */
+.modalOverlay { height: 100dvh; width: 100%; }
+.modalContent { box-sizing: border-box; max-height: 92dvh; }
+.optionLabel { overflow-wrap: anywhere; }
+@media (max-width: 768px) {
+  .modalOverlay { padding: 10px; }
+  .modalContent { padding: 18px 14px; border-radius: 12px; }
+  .lockdownHeader { flex-wrap: wrap; gap: 4px 12px; font-size: 11px; }
+  .modalHeader h3 { font-size: 16px; }
+  .questionBlock { padding: 12px; }
+  .optionLabel { padding: 11px 12px; align-items: flex-start; }
+  .scoreBox h2 { font-size: 26px; }
+}

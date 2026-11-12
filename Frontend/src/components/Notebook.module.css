@@ -1,0 +1,516 @@
+.notebookContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 243, 255, 0.25);
+  border-radius: 12px;
+  padding: 10px 16px;
+  gap: 12px;
+}
+
+.toolGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.selectInput {
+  background: #090d16;
+  color: #00f3ff;
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  padding: 6px 12px;
+  border-radius: 6px;
+  outline: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.colorPicker {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Drawing Toolbar Controls */
+.drawToolSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.drawToggleBtn {
+  background: #1e293b;
+  color: #00f3ff;
+  border: 1px solid #00f3ff;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.drawActive {
+  background: #00f3ff !important;
+  color: #000 !important;
+}
+
+.drawControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eraserBtn, .clearCanvasBtn {
+  background: #090d16;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.eraserActive {
+  border-color: #ff9900;
+  color: #ff9900;
+}
+
+.clearCanvasBtn {
+  border-color: #ff0055;
+  color: #ff0055;
+}
+
+.toolActions {
+  display: flex;
+  gap: 8px;
+}
+
+.saveDbBtn {
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  color: #fff;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.saveDbBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.aiFixBtn {
+  background: linear-gradient(135deg, #7928ca 0%, #ff0080 100%);
+  color: #fff;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.aiFixBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.downloadBtn {
+  background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+  color: #000;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pdfBtn {
+  background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+  color: #fff;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.aiNotification {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #00ff66;
+  background: rgba(0, 255, 102, 0.1);
+  border: 1px solid #00ff66;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+/* 3D DOUBLE PAGE JOURNAL DISPLAY */
+.stage {
+  perspective: 1600px;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.doublePageBook {
+  position: relative;
+  width: 880px;
+  height: 530px;
+  display: flex;
+}
+
+/* LEFT PAGE (TABLE OF CONTENTS INDEX) */
+.insideLeftPage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 440px;
+  height: 100%;
+  background: #fdfbf7;
+  border-radius: 12px 0 0 12px;
+  border-right: 2px solid #cbd5e1;
+  padding: 25px 20px 20px 35px;
+  box-shadow: -10px 15px 30px rgba(0, 0, 0, 0.4), inset -15px 0 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.indexHeader {
+  border-bottom: 2px solid #0f172a;
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.indexTitleBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.indexIcon {
+  font-size: 24px;
+}
+
+.indexTitleBox h3 {
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.indexTitleBox p {
+  color: #475569;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.indexList {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 5px;
+}
+
+/* ATTRACTIVE INDEX CARDS */
+.indexCard {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-left: 5px solid #64748b;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+
+.indexCard:hover {
+  background: #f1f5f9;
+  border-left-color: #00f3ff;
+  transform: translateX(4px);
+}
+
+/* VIBRANT GLOWING ACTIVE CARD */
+.activeCard {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  color: #ffffff !important;
+  border-left: 5px solid #00f3ff !important;
+  box-shadow: 0 4px 15px rgba(0, 243, 255, 0.3) !important;
+}
+
+.cardHeaderInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pageRibbon {
+  font-size: 10px;
+  font-weight: 800;
+  color: #1e293b;
+  background: #e2e8f0;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.activeCard .pageRibbon {
+  color: #00f3ff;
+  background: rgba(0, 243, 255, 0.15);
+  border: 1px solid rgba(0, 243, 255, 0.4);
+}
+
+.drawBadge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.activeCard .drawBadge {
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.2);
+}
+
+.indexPreviewText {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #334155;
+}
+
+.activeCard .indexPreviewText {
+  color: #94a3b8;
+}
+
+.notebookFooterDetails {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #cbd5e1;
+  padding-top: 10px;
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #475569;
+}
+
+/* CENTER SPIRAL SPINE */
+.ringCenterSpine {
+  position: absolute;
+  left: 428px;
+  top: 15px;
+  bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 30;
+}
+
+.metalRing {
+  width: 24px;
+  height: 10px;
+  background: linear-gradient(90deg, #111, #fff, #111);
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* INSIDE RIGHT PAGE WITH TEXT & DRAWING CANVAS */
+.insideRightPage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 440px;
+  height: 100%;
+  background: #fffef0;
+  border-radius: 0 12px 12px 0;
+  box-shadow: 10px 15px 35px rgba(0, 0, 0, 0.25);
+  padding: 15px 20px 15px 45px;
+  transform-origin: left center;
+  transition: transform 0.35s ease-in-out;
+}
+
+.drawingCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.canvasActive {
+  pointer-events: auto !important;
+  cursor: crosshair;
+}
+
+.flipNext {
+  animation: flipPageNext 0.35s ease-in-out forwards;
+}
+
+.flipPrev {
+  animation: flipPagePrev 0.35s ease-in-out forwards;
+}
+
+@keyframes flipPageNext {
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(-90deg) scale(0.96); opacity: 0.6; }
+  100% { transform: rotateY(0deg); }
+}
+
+@keyframes flipPagePrev {
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(90deg) scale(0.96); opacity: 0.6; }
+  100% { transform: rotateY(0deg); }
+}
+
+.redMarginLine {
+  position: absolute;
+  left: 55px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #fca5a5;
+  z-index: 2;
+}
+
+.handwrittenArea {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 490px;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 31px,
+    #bae6fd 31px,
+    #bae6fd 32px
+  );
+  line-height: 32px;
+  border: none;
+  outline: none;
+  resize: none;
+  padding-left: 20px;
+  padding-top: 6px;
+  font-weight: 600;
+  background-attachment: local;
+}
+
+/* PAGINATION BAR */
+.paginationBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.85);
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+.pageIndicator {
+  color: #00f3ff;
+  font-weight: 700;
+  font-size: 13px;
+  margin: 0 8px;
+}
+
+.navBtn, .addBtn, .deleteBtn {
+  background: #090d16;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.navBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.addBtn {
+  border-color: #00ff66;
+  color: #00ff66;
+}
+
+.deleteBtn {
+  border-color: #ff0055;
+  color: #ff0055;
+}
+
+/* ===================== RESPONSIVE (mobile / tablet / laptop / desktop) ===================== */
+.notebookContainer { box-sizing: border-box; padding: 0 4px; }
+.toolbar { box-sizing: border-box; }
+.canvasActive { touch-action: none; }
+.paginationBar { flex-wrap: wrap; }
+.drawToolSection { flex-wrap: wrap; }
+.toolActions { flex-wrap: wrap; }
+
+/* The 880px two-page book needs ~1250px of free width (sidebar included), so below that the pages stack */
+@media (max-width: 1280px) {
+  .stage { padding: 6px 0; }
+  .doublePageBook { width: 100%; max-width: 760px; height: auto; flex-direction: column; gap: 18px; margin: 0 auto; }
+  .ringCenterSpine { display: none; }
+  .insideRightPage {
+    position: relative; order: 1; width: 100%; height: 530px;
+    border-radius: 12px; box-sizing: border-box; padding: 15px 16px 15px 38px;
+  }
+  .insideLeftPage {
+    position: relative; order: 2; width: 100%; height: auto; max-height: 340px;
+    border-radius: 12px; border-right: none; box-sizing: border-box; padding: 18px 16px;
+  }
+  .redMarginLine { left: 40px; }
+  .handwrittenArea { padding-left: 14px; box-sizing: border-box; }
+}
+@media (max-width: 768px) {
+  .toolbar { padding: 10px; gap: 10px; }
+  .toolGroup { flex-wrap: wrap; }
+  .drawToolSection { width: 100%; box-sizing: border-box; }
+  .toolActions { width: 100%; }
+  .toolActions > button, .saveDbBtn, .aiFixBtn, .downloadBtn, .pdfBtn { flex: 1 1 calc(50% - 8px); min-height: 38px; }
+  .paginationBar { gap: 8px; padding: 8px 10px; }
+}
+@media (max-width: 480px) {
+  .insideRightPage { padding: 12px 10px 12px 30px; }
+  .redMarginLine { left: 32px; }
+  .insideLeftPage { max-height: 300px; }
+  .indexCard { padding: 10px 12px; }
+}

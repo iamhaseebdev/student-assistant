@@ -1,0 +1,167 @@
+.modalOverlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(2, 6, 23, 0.94) !important;
+  backdrop-filter: blur(14px) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 9999999 !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+}
+
+.modalContent {
+  background: #060b14;
+  border: 1.5px solid #00f3ff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  padding: 24px;
+  box-shadow: 0 0 45px rgba(0, 243, 255, 0.3);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+
+.titleBox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trophyIcon {
+  font-size: 26px;
+}
+
+.titleBox h3 {
+  color: #00f3ff !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+  letter-spacing: 0.5px !important;
+}
+
+.titleBox p {
+  color: #94a3b8 !important;
+  font-size: 11px !important;
+  margin: 2px 0 0 0 !important;
+}
+
+.closeBtn {
+  background: rgba(255, 0, 85, 0.15);
+  border: 1px solid #ff0055;
+  color: #ff0055;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadingText, .emptyState {
+  text-align: center;
+  color: #00f3ff;
+  padding: 30px 0;
+  font-size: 13px;
+}
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.rankCard {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1.5px solid rgba(0, 243, 255, 0.25);
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topRankCard {
+  background: rgba(0, 243, 255, 0.08);
+  border-color: #00f3ff;
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.15);
+}
+
+.leftInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rankBadge {
+  color: #00f3ff;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.studentDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.studentName {
+  color: #00f3ff !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+}
+
+.levelTag {
+  color: #94a3b8 !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  margin: 2px 0 0 0 !important;
+}
+
+.rightXP {
+  background: rgba(0, 243, 255, 0.12);
+  border: 1px solid #00f3ff;
+  color: #00f3ff;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+/* ===================== RESPONSIVE (mobile / tablet / laptop / desktop) ===================== */
+.modalOverlay { height: 100dvh !important; overflow-y: auto !important; }
+.modalContent { box-sizing: border-box; max-height: 92dvh; overflow-y: auto; }
+.cardList { max-height: min(380px, 58dvh); }
+.leftInfo { flex: 1 1 auto; min-width: 0; }
+.studentDetails { min-width: 0; }
+.studentName { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rightXP { white-space: nowrap; flex-shrink: 0; margin-left: 10px; }
+@media (max-width: 480px) {
+  .modalOverlay { padding: 12px !important; }
+  .modalContent { padding: 16px; border-radius: 14px; }
+  .titleBox h3 { font-size: 14px !important; }
+  .trophyIcon { font-size: 22px; }
+  .closeBtn { width: 36px; height: 36px; }
+  .cardList { max-height: 62dvh; }
+  .rankCard { padding: 10px 12px; }
+  .studentName { font-size: 13px !important; }
+  .rightXP { font-size: 11px; padding: 5px 9px; }
+}

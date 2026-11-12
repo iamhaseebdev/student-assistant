@@ -1,0 +1,158 @@
+.card {
+  max-width: 760px;
+  margin: 0 auto;
+  background: rgba(8, 12, 22, 0.95);
+  border: 1px solid rgba(0, 243, 255, 0.25);
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.loading { color: #94a3b8; text-align: center; padding: 40px; }
+.title { color: #00f3ff; margin: 0 0 6px; text-align: center; }
+.sub { color: #94a3b8; text-align: center; font-size: 13px; margin: 0 0 22px; }
+.section { color: #e2e8f0; margin: 26px 0 8px; font-size: 15px; }
+.help { color: #64748b; font-size: 12px; margin: 0 0 12px; }
+
+.error {
+  color: #ff0055; background: rgba(255, 0, 85, 0.1); border: 1px solid #ff0055;
+  padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; font-size: 13px; font-weight: 600; text-align: center;
+}
+
+/* ---------- form ---------- */
+.classRow {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(0, 243, 255, 0.15);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+.classTop { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.labelInput { flex: 1 1 160px; min-width: 0; }
+.to { color: #64748b; font-size: 13px; }
+
+.classTop input, .field input, .customRow input {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #fff;
+  outline: none;
+  color-scheme: dark;
+}
+.classTop input:focus, .field input:focus, .customRow input:focus { border-color: #00f3ff; }
+
+.removeBtn {
+  background: rgba(255, 0, 85, 0.1); border: 1px solid rgba(255, 0, 85, 0.4); color: #ff0055;
+  border-radius: 8px; padding: 8px 11px; cursor: pointer; font-weight: 700;
+}
+
+.dayChips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(148, 163, 184, 0.3); color: #94a3b8;
+  border-radius: 999px; padding: 6px 14px; font-size: 13px; cursor: pointer;
+}
+.chipOn { background: rgba(0, 243, 255, 0.15); border-color: #00f3ff; color: #00f3ff; font-weight: 600; }
+
+.addBtn {
+  background: transparent; border: 1px dashed rgba(0, 243, 255, 0.5); color: #00f3ff;
+  border-radius: 8px; padding: 9px 16px; cursor: pointer; font-weight: 600; font-size: 13px;
+}
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.field label { color: #94a3b8; font-size: 13px; font-weight: 600; }
+.customRow { display: flex; gap: 8px; margin-top: 10px; }
+.customRow input { flex: 1; min-width: 0; }
+
+.actions { display: flex; gap: 12px; margin-top: 24px; }
+.primaryBtn {
+  flex: 1; background: linear-gradient(135deg, #00f3ff 0%, #00ff66 100%); border: none;
+  padding: 13px; border-radius: 8px; color: #030712; font-weight: 700; cursor: pointer;
+}
+.primaryBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+.ghostBtn {
+  background: transparent; border: 1px solid rgba(0, 243, 255, 0.4); color: #00f3ff;
+  padding: 10px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 13px;
+}
+.dangerBtn {
+  background: transparent; border: 1px solid rgba(255, 0, 85, 0.5); color: #ff0055;
+  padding: 10px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 13px;
+}
+
+/* ---------- view ---------- */
+.viewHead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; }
+.headBtns { display: flex; gap: 8px; }
+
+.warnBox {
+  background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.5); color: #fbbf24;
+  border-radius: 10px; padding: 10px 14px; font-size: 12.5px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 4px;
+}
+
+.dayTabs { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 16px; }
+.dayTab {
+  position: relative; flex: 1; min-width: 52px; background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.25); color: #94a3b8; border-radius: 10px; padding: 10px 0; cursor: pointer; font-weight: 600;
+}
+.dayTabOn { background: rgba(0, 243, 255, 0.15); border-color: #00f3ff; color: #00f3ff; }
+.todayDot { position: absolute; top: 5px; right: 7px; width: 6px; height: 6px; border-radius: 50%; background: #00ff66; }
+
+.summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+.sumItem {
+  background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(0, 243, 255, 0.15); border-radius: 10px;
+  padding: 10px; text-align: center; display: flex; flex-direction: column; gap: 2px;
+}
+.sumItem b { color: #fff; font-size: 17px; }
+.sumItem span { color: #64748b; font-size: 11px; }
+
+.dayName { color: #e2e8f0; margin: 0 0 12px; }
+
+.timeline { display: flex; flex-direction: column; gap: 8px; }
+.block {
+  display: flex; gap: 14px; align-items: center; padding: 10px 14px; border-radius: 10px;
+  background: rgba(15, 23, 42, 0.7); border-left: 4px solid #64748b;
+}
+.blockTime { width: 82px; flex-shrink: 0; color: #e2e8f0; font-size: 12.5px; font-weight: 600; line-height: 1.5; }
+.blockTime span { color: #64748b; font-weight: 500; }
+.blockBody { flex: 1; min-width: 0; }
+.blockTitle { color: #fff; font-size: 14px; font-weight: 600; }
+.blockMeta { color: #64748b; font-size: 12px; margin-top: 2px; }
+
+.type_class   { border-left-color: #6366f1; background: rgba(99, 102, 241, 0.12); }
+.type_study   { border-left-color: #00f3ff; background: rgba(0, 243, 255, 0.10); }
+.type_play    { border-left-color: #00ff66; background: rgba(0, 255, 102, 0.10); }
+.type_free    { border-left-color: #22c55e; background: rgba(34, 197, 94, 0.07); }
+.type_meal    { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.10); }
+.type_routine { border-left-color: #a78bfa; background: rgba(167, 139, 250, 0.10); }
+.type_rest    { border-left-color: #94a3b8; background: rgba(148, 163, 184, 0.08); }
+.type_sleep   { border-left-color: #3b82f6; background: rgba(59, 130, 246, 0.14); }
+
+@media (max-width: 560px) {
+  .card { padding: 18px; }
+  .grid2 { grid-template-columns: 1fr; }
+  .blockTime { width: 72px; }
+}
+
+/* ===================== RESPONSIVE (mobile / tablet / laptop / desktop) ===================== */
+.card { box-sizing: border-box; }
+.classTop input[type="time"] { min-width: 0; }
+@media (max-width: 768px) {
+  .card { padding: 20px; }
+  .classTop input, .field input, .customRow input { font-size: 16px; }
+  .dayTab { min-width: 46px; }
+}
+@media (max-width: 480px) {
+  .card { padding: 14px; border-radius: 12px; }
+  .labelInput { flex: 1 1 100%; }
+  .classTop { gap: 6px; }
+  .classTop input[type="time"] { flex: 1 1 110px; }
+  .customRow { flex-wrap: wrap; }
+  .actions { flex-direction: column; }
+  .headBtns { width: 100%; }
+  .headBtns > button { flex: 1; }
+  .summary { gap: 6px; }
+  .sumItem b { font-size: 15px; }
+  .block { gap: 10px; padding: 9px 10px; }
+  .blockTime { width: 64px; font-size: 12px; }
+  .blockTitle { font-size: 13px; overflow-wrap: anywhere; }
+}
