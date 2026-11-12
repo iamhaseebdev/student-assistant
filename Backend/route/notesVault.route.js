@@ -12,8 +12,16 @@ import {
 
 // Uploaded PDFs go to Uploads/pdf/ with a proper .pdf name
 // (before: dest 'Uploads/' saved a random name with no extension in the wrong folder)
-const PDF_DIR = path.join(process.cwd(), 'Uploads', 'pdf');
-fs.mkdirSync(PDF_DIR, { recursive: true });
+// Vercel pe sirf /tmp writable hai, local pe Uploads/pdf use hoga
+const PDF_DIR = process.env.VERCEL
+  ? '/tmp/uploads/pdf'
+  : path.join(process.cwd(), 'Uploads', 'pdf');
+
+try {
+  fs.mkdirSync(PDF_DIR, { recursive: true });
+} catch (err) {
+  console.error('Upload dir create error:', err.message);
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, PDF_DIR),
