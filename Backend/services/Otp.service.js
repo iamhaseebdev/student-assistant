@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import Otp from "../model/Otp.model.js";
-import { sendOtpEmail } from "../utils/mailer.js";
+import { sendOtpEmail } from "../utils/Mailer.js";
 
 const OTP_TTL_MS = 10 * 60 * 1000;        // code 10 min valid
 const RESEND_COOLDOWN_MS = 60 * 1000;     // resend 60 sec baad
