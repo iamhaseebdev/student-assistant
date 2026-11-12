@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from './AiLoader.module.css';
+import styles from './Ailoader.module.css';
 
 /**
  * Full-screen AI "neural orb" loader.
