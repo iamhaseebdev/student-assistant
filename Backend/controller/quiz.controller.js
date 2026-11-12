@@ -2,7 +2,7 @@ import Document from "../model/document.model.js";
 import Progress from "../model/progress.model.js";
 import ExamSchedule from "../model/examSchedule.model.js";
 import Student from "../model/student.model.js";
-import { askAI } from "../services/Ai.service.js";
+import { askAI } from "../services/aiService.js";
 // import from lib/ directly (the package index has a known debug-mode bug in ESM / serverless)
 import pdfParse from "pdf-parse/lib/pdf-parse.js";
 
