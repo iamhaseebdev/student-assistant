@@ -1,5 +1,5 @@
 // Backend/services/chat.service.js
-import { askAIChat } from "./ai.service.js";   // Gemini first, Groq backup (same as Notes Vault)
+import { askAIChat } from "./Ai.service.js";   // Gemini first, Groq backup (same as Notes Vault)
 
 const SYSTEM_PROMPT = `You are a dedicated AI Study Assistant for students.
 
