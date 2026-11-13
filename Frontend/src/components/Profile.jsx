@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useAuth } from '../context/AuthContext';
 import apiClient from '../api/apiClient';
+import AILoader, { ButtonSpinner } from './Ailoader';
 import styles from './Profile.module.css';
 
 // At least 8 chars, max 64, must contain a letter and a number
@@ -131,7 +132,7 @@ const Profile = () => {
       </div>
     ) : null;
 
-  if (loading) return <div className={styles.loading}>Loading profile...</div>;
+  if (loading) return <AILoader messages={['Loading your profile', 'Fetching your details']} />;
 
   return (
     <div className={styles.wrapper}>
@@ -189,7 +190,7 @@ const Profile = () => {
           </div>
 
           <button type="submit" className={styles.saveBtn} disabled={saving}>
-            {saving ? 'Saving Changes...' : 'Save Profile'}
+            {saving ? <><ButtonSpinner /> Saving Changes...</> : 'Save Profile'}
           </button>
         </form>
       </div>
@@ -241,7 +242,7 @@ const Profile = () => {
           </label>
 
           <button type="submit" className={styles.saveBtn} disabled={pwSaving}>
-            {pwSaving ? 'Updating Password...' : 'Change Password'}
+            {pwSaving ? <><ButtonSpinner /> Updating Password...</> : 'Change Password'}
           </button>
           <p className={styles.hint}>You will be logged out from all devices after changing your password.</p>
         </form>

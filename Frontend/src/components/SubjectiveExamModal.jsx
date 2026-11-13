@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import apiClient from '../api/apiClient';
+import AILoader, { ButtonSpinner } from './Ailoader';
 import styles from './SubjectiveExamModal.module.css';
 
 const SYMBOL_TOOLBAR = [
@@ -186,6 +187,14 @@ const SubjectiveExamModal = ({ vaultData, questionData, onClose, onFinish }) => 
 
   const modalJSX = (
     <div className={styles.modalOverlay}>
+      {submitting && (
+        <AILoader
+          fullScreen
+          variant="neural"
+          size="lg"
+          messages={['AI examiner is reading your answer', 'Checking facts and keywords', 'Calculating your board score']}
+        />
+      )}
       <div className={styles.examCard}>
         {/* HEADER */}
         <div className={styles.header}>
@@ -267,7 +276,7 @@ const SubjectiveExamModal = ({ vaultData, questionData, onClose, onFinish }) => 
                 )}
 
                 <button className={styles.submitBtn} onClick={handleSubmitExam} disabled={submitting}>
-                  {submitting ? '🤖 AI Examining Paper...' : 'Submit Answer for Board Evaluation'}
+                  {submitting ? <><ButtonSpinner /> AI Examining Paper...</> : 'Submit Answer for Board Evaluation'}
                 </button>
               </>
             ) : (

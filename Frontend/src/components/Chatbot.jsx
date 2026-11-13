@@ -5,6 +5,7 @@ import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css'; // KaTeX formula CSS
 
 import apiClient from '../api/apiClient';
+import AILoader from './Ailoader';
 import styles from './Chatbot.module.css';
 
 function Chatbot() {
@@ -105,7 +106,7 @@ function Chatbot() {
 
             {loading && (
               <div className={`${styles.message} ${styles.botMsg}`}>
-                Generating answer...
+                <AILoader inline variant="bars" size="xs" text="Generating answer" />
               </div>
             )}
             <div ref={scrollRef} />

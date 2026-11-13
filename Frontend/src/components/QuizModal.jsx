@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import apiClient from '../api/apiClient';
+import AILoader, { ButtonSpinner } from './Ailoader';
 import styles from './QuizModal.module.css';
 
 const QuizModal = ({ quizData, docTitle, docId, difficulty, onClose, onExamCompleted }) => {
@@ -109,6 +110,14 @@ const QuizModal = ({ quizData, docTitle, docId, difficulty, onClose, onExamCompl
 
   return (
     <div className={styles.modalOverlay}>
+      {loading && (
+        <AILoader
+          fullScreen
+          variant="neural"
+          size="lg"
+          messages={['Verifying your answers', 'Calculating your score', 'Saving your result']}
+        />
+      )}
       <div className={styles.modalContent}>
         <div className={styles.lockdownHeader}>
           <span>🔒 KIOSK EXAM LOCKDOWN ACTIVE</span>
@@ -156,7 +165,7 @@ const QuizModal = ({ quizData, docTitle, docId, difficulty, onClose, onExamCompl
               onClick={() => handleSubmitQuiz(false)}
               disabled={loading || Object.keys(userAnswers).length === 0}
             >
-              {loading ? 'Evaluating & Verifying...' : 'Submit Final Exam'}
+              {loading ? <><ButtonSpinner /> Evaluating...</> : 'Submit Final Exam'}
             </button>
           </>
         ) : (

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import apiClient from '../api/apiClient';
+import AILoader from './Ailoader';
 import styles from './LeaderboardModal.module.css';
 
 const LeaderboardModal = ({ onClose }) => {
@@ -42,7 +43,7 @@ const LeaderboardModal = ({ onClose }) => {
         </div>
 
         {loading ? (
-          <div className={styles.loadingText}>⏳ Loading Live Rankings...</div>
+          <AILoader messages={['Loading live rankings', 'Counting XP points', 'Sorting top scholars']} />
         ) : rankings.length > 0 ? (
           <div className={styles.cardList}>
             {rankings.map((item) => (

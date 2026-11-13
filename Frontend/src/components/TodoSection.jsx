@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import apiClient from '../api/apiClient';
+import AILoader, { ButtonSpinner } from './Ailoader';
 import styles from './TodoSection.module.css';
 
 const TodoSection = () => {
@@ -7,6 +8,7 @@ const TodoSection = () => {
   const [taskTitle, setTaskTitle] = useState('');
   const [priority, setPriority] = useState('medium');
   const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(true);
 
   // AI Syllabus Generator States
   const [showAiModal, setShowAiModal] = useState(false);
@@ -25,6 +27,8 @@ const TodoSection = () => {
       setTodos(res.data.data || []);
     } catch (err) {
       console.error(err);
+    } finally {
+      setFetching(false);
     }
   };
 
@@ -89,6 +93,14 @@ const TodoSection = () => {
 
   return (
     <div className={styles.todoCard}>
+      {aiLoading && (
+        <AILoader
+          fullScreen
+          variant="neural"
+          size="lg"
+          messages={['AI is reading your syllabus', 'Splitting topics by day', 'Building your study plan']}
+        />
+      )}
       <div className={styles.sectionHeader}>
         <div>
           <h3>📝 TASKS & ASSIGNMENTS</h3>
@@ -141,7 +153,7 @@ const TodoSection = () => {
           />
 
           <button type="submit" className={styles.generateBtn} disabled={aiLoading}>
-            {aiLoading ? 'AI Generating Daily Tasks...' : '✨ Generate & Add Daily Tasks'}
+            {aiLoading ? <><ButtonSpinner /> AI Generating Daily Tasks...</> : '✨ Generate & Add Daily Tasks'}
           </button>
         </form>
       )}
@@ -166,13 +178,15 @@ const TodoSection = () => {
           <option value="high">High Priority</option>
         </select>
         <button type="submit" className={styles.addBtn} disabled={loading}>
-          {loading ? 'Adding...' : '+ Add Task'}
+          {loading ? <><ButtonSpinner /> Adding...</> : '+ Add Task'}
         </button>
       </form>
 
       {/* Todo List Display */}
       <div className={styles.todoList}>
-        {todos.length > 0 ? (
+        {fetching ? (
+          <AILoader size="sm" text="Loading your tasks" />
+        ) : todos.length > 0 ? (
           todos.map((todo) => (
             <div key={todo._id} className={styles.todoItem}>
               <div className={styles.todoLeft}>

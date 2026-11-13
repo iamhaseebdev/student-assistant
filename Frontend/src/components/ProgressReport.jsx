@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import apiClient from '../api/apiClient';
+import AILoader, { ButtonSpinner } from './Ailoader';
 import styles from './ProgressReport.module.css';
 
 const ProgressReport = () => {
@@ -27,8 +28,12 @@ const ProgressReport = () => {
 
   if (loading) {
     return (
-      <div className={styles.reportCard} style={{ textAlign: 'center', padding: '60px 20px' }}>
-        <div style={{ color: '#00f3ff', fontSize: '18px', fontWeight: 700 }}>⚡ Analyzing Learning Performance...</div>
+      <div className={styles.reportCard} style={{ textAlign: 'center', padding: '40px 20px' }}>
+        <AILoader
+          variant="neural"
+          size="lg"
+          messages={['Analyzing learning performance', 'Crunching your quiz stats', 'Building your report']}
+        />
       </div>
     );
   }
@@ -154,10 +159,10 @@ const ProgressReport = () => {
         </div>
         <div className={styles.downloadGroup}>
           <button type="button" className={styles.downloadBtn} onClick={downloadPDF} disabled={!!downloading}>
-            {downloading === 'pdf' ? '⏳ Preparing PDF...' : '⬇️ Download PDF'}
+            {downloading === 'pdf' ? <><ButtonSpinner /> Preparing PDF...</> : '⬇️ Download PDF'}
           </button>
           <button type="button" className={styles.downloadBtn} onClick={downloadCSV} disabled={!!downloading}>
-            {downloading === 'csv' ? '⏳ Preparing...' : '⬇️ Download CSV'}
+            {downloading === 'csv' ? <><ButtonSpinner /> Preparing...</> : '⬇️ Download CSV'}
           </button>
         </div>
       </div>

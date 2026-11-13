@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import apiClient from '../api/apiClient';
+import AILoader, { ButtonSpinner } from './Ailoader';
 import styles from './PdfVault.module.css';
 
 const PdfVault = () => {
@@ -39,6 +40,7 @@ const PdfVault = () => {
   const [examDifficulty, setExamDifficulty] = useState('easy');
   const [examTimeLeft, setExamTimeLeft] = useState(600);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [savingExam, setSavingExam] = useState(false);
 
   useEffect(() => {
     fetchDocuments();
@@ -255,6 +257,7 @@ const PdfVault = () => {
     setMinutesLeft(59);
     setSecondsLeft(59);
 
+    setSavingExam(true);
     try {
       const res = await apiClient.post('/assistant/quiz/save-gamified', {
         score: forceFail ? 0 : score,
@@ -290,11 +293,38 @@ const PdfVault = () => {
 
     } catch (err) {
       console.error('Save Quiz Error:', err);
+    } finally {
+      setSavingExam(false);
     }
   };
 
   return (
     <div className={styles.vaultCard}>
+      {uploading && (
+        <AILoader
+          fullScreen
+          variant="neural"
+          size="lg"
+          messages={['Uploading your PDF', 'Saving to your vault', 'Almost done']}
+        />
+      )}
+      {startingQuiz && (
+        <AILoader
+          fullScreen
+          variant="neural"
+          size="lg"
+          messages={['AI is reading your PDF', 'Writing exam questions', 'Preparing your exam']}
+        />
+      )}
+      {savingExam && (
+        <AILoader
+          fullScreen
+          variant="neural"
+          size="lg"
+          messages={['Checking your answers', 'Calculating your score', 'Saving your result']}
+        />
+      )}
+
       {/* Header with Live Timer */}
       <div className={styles.vaultHeader}>
         <div className={styles.headerInfo}>
@@ -359,14 +389,14 @@ const PdfVault = () => {
             {selectedFile ? selectedFile.name : '📎 Choose PDF File'}
           </label>
           <button type="submit" disabled={uploading} className={styles.uploadBtn}>
-            {uploading ? 'Uploading...' : 'Upload PDF'}
+            {uploading ? <><ButtonSpinner /> Uploading...</> : 'Upload PDF'}
           </button>
         </div>
       </form>
 
       {/* PDF List Grid */}
       {loadingDocs ? (
-        <div style={{ color: '#00f3ff', textAlign: 'center', padding: '20px' }}>⏳ Loading PDF Documents...</div>
+        <AILoader messages={['Loading PDF documents', 'Fetching your study material', 'Almost there']} />
       ) : documents.length > 0 ? (
         <div className={styles.gridContainer}>
           {documents.map((doc) => (
@@ -544,7 +574,7 @@ const PdfVault = () => {
                 className={styles.confirmStartExamBtn}
                 disabled={startingQuiz}
               >
-                {startingQuiz ? '⚡ Generating AI Exam...' : '🚀 Start Exam Now'}
+                {startingQuiz ? <><ButtonSpinner /> Generating AI Exam...</> : '🚀 Start Exam Now'}
               </button>
             </div>
           </div>

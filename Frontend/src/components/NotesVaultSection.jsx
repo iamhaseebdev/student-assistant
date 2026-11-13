@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import apiClient from '../api/apiClient';
 import SubjectiveExamModal from './SubjectiveExamModal';
+import AILoader, { ButtonSpinner } from './Ailoader';
 import styles from './NotesVaultSection.module.css';
 
 const SUBJECTS_LIST = ['Computer', 'Physics', 'Chemistry', 'Biology'];
@@ -250,7 +251,9 @@ const NotesVaultSection = () => {
           )}
 
           <button type="submit" disabled={generating} className={styles.generateBtn}>
-            {generating ? '⏳ Building PDF Document...' : creationMode === 'upload' ? '📎 Upload & Save PDF' : '🚀 Generate & Create PDF'}
+            {generating
+              ? <><ButtonSpinner /> {creationMode === 'upload' ? 'Uploading PDF...' : 'Building PDF...'}</>
+              : creationMode === 'upload' ? '📎 Upload & Save PDF' : '🚀 Generate & Create PDF'}
           </button>
         </form>
       </div>
@@ -267,7 +270,7 @@ const NotesVaultSection = () => {
       )}
 
       {loading ? (
-        <div style={{ color: '#00f3ff', textAlign: 'center', padding: '30px' }}>⏳ Loading PDF Vaults...</div>
+        <AILoader messages={['Loading your PDF vaults', 'Fetching your notes', 'Almost there']} />
       ) : vaults.length > 0 ? (
         <div className={styles.vaultGrid}>
           {vaults.map((vault) => {
@@ -293,7 +296,7 @@ const NotesVaultSection = () => {
                     disabled={startingExam}
                     style={{ opacity: cooldown.canTake ? 1 : 0.65, cursor: cooldown.canTake ? 'pointer' : 'not-allowed' }}
                   >
-                    {!cooldown.canTake ? cooldown.text : startingExam ? '⏳ Preparing...' : '✏️ Start Q/A Exam'}
+                    {!cooldown.canTake ? cooldown.text : startingExam ? 'Preparing...' : '✏️ Start Q/A Exam'}
                   </button>
                 </div>
               </div>
@@ -304,6 +307,28 @@ const NotesVaultSection = () => {
         <div style={{ color: '#64748b', textAlign: 'center', padding: '30px', background: 'rgba(15,23,42,0.5)', borderRadius: '12px' }}>
           📄 No Notes PDF found. Create your first PDF topic above!
         </div>
+      )}
+
+      {generating && (
+        <AILoader
+          fullScreen
+          variant="neural"
+          size="lg"
+          messages={
+            creationMode === 'upload'
+              ? ['Uploading your PDF', 'Reading the pages', 'Saving to your vault']
+              : ['AI is reading your topic', 'Writing your notes', 'Building your PDF']
+          }
+        />
+      )}
+
+      {startingExam && (
+        <AILoader
+          fullScreen
+          variant="neural"
+          size="lg"
+          messages={['AI is reading your notes', 'Picking a board question', 'Preparing your exam']}
+        />
       )}
 
       {showExamModal && selectedVaultForExam && activeQuestion && (

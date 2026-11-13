@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import apiClient from '../api/apiClient';
+import AILoader, { ButtonSpinner } from './Ailoader';
 import styles from './Timetable.module.css';
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -148,7 +149,7 @@ const Timetable = () => {
     setMode('form');
   };
 
-  if (mode === 'loading') return <div className={styles.loading}>Loading timetable...</div>;
+  if (mode === 'loading') return <AILoader messages={['Loading your timetable', 'Checking your schedule']} />;
 
   // =====================================================================
   // FORM
@@ -156,6 +157,14 @@ const Timetable = () => {
   if (mode === 'form') {
     return (
       <form className={styles.card} onSubmit={handleGenerate}>
+        {saving && (
+          <AILoader
+            fullScreen
+            variant="neural"
+            size="lg"
+            messages={['Reading your class timings', 'Planning study blocks', 'Balancing play and sleep']}
+          />
+        )}
         <h3 className={styles.title}>🗓️ MAKE MY TIMETABLE</h3>
         <p className={styles.sub}>Tell us your class timings and we will plan study, play and sleep around them.</p>
 
@@ -287,7 +296,7 @@ const Timetable = () => {
             </button>
           )}
           <button type="submit" className={styles.primaryBtn} disabled={saving}>
-            {saving ? 'Creating...' : '✨ Create Timetable'}
+            {saving ? <><ButtonSpinner /> Creating...</> : '✨ Create Timetable'}
           </button>
         </div>
       </form>

@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import AILoader, { ButtonSpinner } from './Ailoader';
 import styles from './Navbar.module.css';
 
 const Navbar = ({ user, onLogout, onOpenLeaderboard }) => {
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  // onLogout async ho (server call) to jab tak khatam na ho, loader dikhao aur double-click rokho
+  const handleLogoutClick = async () => {
+    if (loggingOut) return;
+    setLoggingOut(true);
+    try {
+      await onLogout?.();
+    } finally {
+      setLoggingOut(false);
+    }
+  };
+
   return (
     <header className={styles.headerBar}>
+      {loggingOut && <AILoader fullScreen variant="orbit" text="Logging out" />}
+
       {/* Greeting Section */}
       <div className={styles.greetingSection}>
         <h3 className={styles.welcomeHeading}>
@@ -34,8 +50,8 @@ const Navbar = ({ user, onLogout, onOpenLeaderboard }) => {
         </div>
 
         {/* Logout Button */}
-        <button type="button" className={styles.logoutBtn} onClick={onLogout}>
-          Logout
+        <button type="button" className={styles.logoutBtn} onClick={handleLogoutClick} disabled={loggingOut}>
+          {loggingOut ? <><ButtonSpinner /> Logging out</> : 'Logout'}
         </button>
       </div>
     </header>

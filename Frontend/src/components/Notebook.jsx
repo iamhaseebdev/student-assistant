@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import apiClient from '../api/apiClient';
+import AILoader, { ButtonSpinner } from './Ailoader';
 import styles from './Notebook.module.css';
 
 const Notebook = () => {
@@ -13,6 +14,8 @@ const Notebook = () => {
   const [inkColor, setInkColor] = useState('#1a237e');
   const [isAiFixing, setIsAiFixing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isLoadingNotebook, setIsLoadingNotebook] = useState(true);
+  const [isExporting, setIsExporting] = useState(false);
   const [aiMessage, setAiMessage] = useState('');
   const [flipDirection, setFlipDirection] = useState('');
 
@@ -46,6 +49,8 @@ const Notebook = () => {
       }
     } catch (err) {
       console.error('Fetch DB Notebook Error:', err);
+    } finally {
+      setIsLoadingNotebook(false);
     }
   };
 
@@ -212,6 +217,7 @@ const Notebook = () => {
 
   const handleDownloadPage = async () => {
     if (!notebookPageRef.current) return;
+    setIsExporting(true);
     try {
       const canvas = await html2canvas(notebookPageRef.current, { scale: 2, backgroundColor: '#fffef0' });
       const link = document.createElement('a');
@@ -220,11 +226,14 @@ const Notebook = () => {
       link.click();
     } catch (err) {
       console.error('Download PNG error:', err);
+    } finally {
+      setIsExporting(false);
     }
   };
 
   const handleDownloadFullPDF = async () => {
     if (!notebookPageRef.current) return;
+    setIsExporting(true);
     try {
       const pdf = new jsPDF('portrait', 'px', 'a4');
       const canvas = await html2canvas(notebookPageRef.current, { scale: 2 });
@@ -236,6 +245,8 @@ const Notebook = () => {
       pdf.save(`Student_Assistant_Notebook.pdf`);
     } catch (err) {
       console.error('Download PDF error:', err);
+    } finally {
+      setIsExporting(false);
     }
   };
 
@@ -266,6 +277,19 @@ const Notebook = () => {
 
   return (
     <div className={styles.notebookContainer}>
+      {isLoadingNotebook && (
+        <AILoader fullScreen variant="orbit" messages={['Opening your notebook', 'Loading your pages']} />
+      )}
+      {isAiFixing && (
+        <AILoader
+          fullScreen
+          variant="neural"
+          size="lg"
+          messages={['AI is reading your page', 'Fixing spelling and grammar', 'Polishing your notes']}
+        />
+      )}
+      {isExporting && <AILoader fullScreen variant="bars" text="Preparing your download" />}
+
       {/* Top Controls Toolbar */}
       <div className={styles.toolbar}>
         <div className={styles.toolGroup}>
@@ -347,7 +371,7 @@ const Notebook = () => {
             className={styles.saveDbBtn}
             disabled={isSaving}
           >
-            {isSaving ? '💾 Saving...' : '💾 Save Notes'}
+            {isSaving ? <><ButtonSpinner /> Saving...</> : '💾 Save Notes'}
           </button>
 
           <button 
@@ -356,7 +380,7 @@ const Notebook = () => {
             className={styles.aiFixBtn}
             disabled={isAiFixing || !pages[currentPage]?.trim()}
           >
-            {isAiFixing ? '✨ Correcting...' : '✨ AI Fix'}
+            {isAiFixing ? <><ButtonSpinner /> Correcting...</> : '✨ AI Fix'}
           </button>
 
           <button type="button" onClick={handleDownloadPage} className={styles.downloadBtn}>
