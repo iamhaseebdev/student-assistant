@@ -31,6 +31,7 @@
     "nodemon": "^3.1.14",
     "pdf-parse": "^1.1.1",
     "pdfkit": "^0.20.2",
-    "react-markdown": "^10.1.0"
+    "react-markdown": "^10.1.0",
+    "unpdf": "^2.1.0"
   }
 }

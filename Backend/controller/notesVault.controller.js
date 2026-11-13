@@ -30,6 +30,21 @@ async function uploadPdf(fileName, buffer) {
 // -------------------------------------------------------------------------
 const MAX_UPLOAD_BYTES = 25 * 1024 * 1024; // 25MB
 
+// PDF se text nikalna: pehle pdf-parse, fail ho (jaise "bad XRef entry") to modern parser (unpdf) try karo
+async function extractPdfText(buf) {
+  try {
+    const parsed = await pdfParse(buf);
+    const t = (parsed.text || '').trim();
+    if (t.length) return t;
+  } catch (e) {
+    console.warn('pdf-parse failed:', e.message, '-> trying unpdf fallback');
+  }
+  const { getDocumentProxy, extractText } = await import('unpdf');
+  const pdf = await getDocumentProxy(new Uint8Array(buf));
+  const { text } = await extractText(pdf, { mergePages: true });
+  return (text || '').trim();
+}
+
 export async function blobUploadToken(req, res) {
   try {
     const json = await handleUpload({
@@ -631,8 +646,19 @@ export async function createOrGenerateNotes(req, res) {
       const baseName = (origName || 'notes').replace(/\.pdf$/i, '').replace(/[^a-zA-Z0-9]/g, '_').replace(/_+/g, '_').slice(0, 40) || 'notes';
       fileName = `${baseName}_${Date.now()}.pdf`;
 
-      const parsed = await pdfParse(pdfBuffer);
-      notesContent = (parsed.text || '').trim();
+      console.log('📥 PDF received:', pdfBuffer.length, 'bytes, header:', pdfBuffer.slice(0, 5).toString());
+      if (pdfBuffer.slice(0, 5).toString() !== '%PDF-') {
+        return res.status(422).json({ success: false, message: 'This file is not a valid PDF.' });
+      }
+      try {
+        notesContent = await extractPdfText(pdfBuffer);
+      } catch (e) {
+        console.error('PDF read error:', e.message);
+        return res.status(422).json({
+          success: false,
+          message: 'This PDF could not be read (the file may be damaged). Open it in your browser, choose Print > Save as PDF, and upload the new file.'
+        });
+      }
       if (notesContent.length < 200) {
         return res.status(422).json({
           success: false,
