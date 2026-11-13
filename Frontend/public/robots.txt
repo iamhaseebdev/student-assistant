@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /student-dashboard
+
+Sitemap: https://student-assistant-olive.vercel.app/sitemap.xml
