@@ -104,7 +104,7 @@ const Profile = () => {
 
     setPwSaving(true);
     try {
-      await apiClient.put('/api/auth/ChangePassword', {
+      await apiClient.put('/auth/ChangePassword', {
         currentPassword: pw.current,
         newPassword: pw.next
       });
