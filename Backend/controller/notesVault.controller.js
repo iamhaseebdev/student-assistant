@@ -6,6 +6,7 @@ import fs from 'fs';
 import path from 'path';
 import PDFDocument from 'pdfkit';
 import { put } from '@vercel/blob';
+import { handleUpload } from '@vercel/blob/client';
 // NOTE: import from lib/ directly (the package index has a known debug-mode bug in ESM)
 import pdfParse from 'pdf-parse/lib/pdf-parse.js';
 
@@ -21,6 +22,33 @@ async function uploadPdf(fileName, buffer) {
     addRandomSuffix: true
   });
   return blob.url;
+}
+
+// -------------------------------------------------------------------------
+// Bari PDF ke liye: browser se seedha Vercel Blob upload (4.5MB function limit bypass)
+// Route: POST /blob-token  (auth middleware + express.json() ke saath)
+// -------------------------------------------------------------------------
+const MAX_UPLOAD_BYTES = 25 * 1024 * 1024; // 25MB
+
+export async function blobUploadToken(req, res) {
+  try {
+    const json = await handleUpload({
+      body: req.body,
+      request: req,
+      onBeforeGenerateToken: async () => {
+        // yahan tak sirf logged-in user pohanchta hai (route pe auth middleware laga hona zaroori hai)
+        return {
+          allowedContentTypes: ['application/pdf'],
+          maximumSizeInBytes: MAX_UPLOAD_BYTES,
+          addRandomSuffix: true
+        };
+      }
+    });
+    return res.status(200).json(json);
+  } catch (error) {
+    console.error('Blob token error:', error);
+    return res.status(400).json({ error: error.message });
+  }
 }
 
 // -------------------------------------------------------------------------
@@ -569,14 +597,39 @@ export async function createOrGenerateNotes(req, res) {
     let fileName, relativePdfUrl, notesContent;
 
     if (creationMode === 'upload') {
-      if (!req.file) {
+      const { blobUrl, originalName } = req.body;
+      let pdfBuffer;
+      let origName;
+
+      if (blobUrl) {
+        // NAYA TAREEQA: PDF browser se seedha Vercel Blob pe ja chuki hai, yahan sirf URL aata hai
+        let host = '';
+        try { host = new URL(blobUrl).hostname; } catch (_) {}
+        if (!host.endsWith('.blob.vercel-storage.com')) {
+          return res.status(400).json({ success: false, message: 'Invalid PDF link.' });
+        }
+        const r = await fetch(blobUrl);
+        if (!r.ok) throw new Error('Could not read the uploaded PDF. Please try again.');
+        pdfBuffer = Buffer.from(await r.arrayBuffer());
+        origName = originalName;
+      } else if (req.file) {
+        // PURANA TAREEQA (chhoti PDF, multer ke through)
+        pdfBuffer = req.file.buffer || fs.readFileSync(req.file.path);
+        if (!req.file.buffer) { try { fs.unlinkSync(req.file.path); } catch (_) {} }
+        origName = req.file.originalname;
+      } else {
         return res.status(400).json({ success: false, message: 'Please attach a PDF file.' });
       }
-      const baseName = (req.file.originalname || 'notes').replace(/\.pdf$/i, '').replace(/[^a-zA-Z0-9]/g, '_').replace(/_+/g, '_').slice(0, 40) || 'notes';
+
+      if (!pdfBuffer || !pdfBuffer.length) {
+        return res.status(400).json({ success: false, message: 'The PDF file is empty.' });
+      }
+      if (pdfBuffer.length > MAX_UPLOAD_BYTES) {
+        return res.status(413).json({ success: false, message: 'PDF is too large (max 25MB).' });
+      }
+
+      const baseName = (origName || 'notes').replace(/\.pdf$/i, '').replace(/[^a-zA-Z0-9]/g, '_').replace(/_+/g, '_').slice(0, 40) || 'notes';
       fileName = `${baseName}_${Date.now()}.pdf`;
-      // multer memoryStorage -> req.file.buffer (disk path only as fallback)
-      const pdfBuffer = req.file.buffer || fs.readFileSync(req.file.path);
-      if (!req.file.buffer) { try { fs.unlinkSync(req.file.path); } catch (_) {} }
 
       const parsed = await pdfParse(pdfBuffer);
       notesContent = (parsed.text || '').trim();
@@ -591,7 +644,8 @@ export async function createOrGenerateNotes(req, res) {
         return res.status(422).json({ success: false, message: check.message });
       }
       notesContent = notesContent.slice(0, 60000);
-      relativePdfUrl = await uploadPdf(fileName, pdfBuffer); // only valid PDFs reach storage
+      // blobUrl hai to file pehle se Blob me hai, dobara upload nahi karna
+      relativePdfUrl = blobUrl || await uploadPdf(fileName, pdfBuffer);
     } else {
       console.log(`🧠 [1/3] Asking AI for notes: "${topicTitle}" ...`);
       const t0 = Date.now();
